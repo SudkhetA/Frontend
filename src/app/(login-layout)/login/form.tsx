@@ -49,7 +49,7 @@ export default function FormComponent({
         <Card>
           <CardContent>
             <Box className="mb-3">
-              <Typography variant="h4" className="text-center" >เข้าสู่ระบบ</Typography>
+              <Typography variant="h4" className="text-center" >Sign In</Typography>
             </Box>
             <Box className="mb-3">
               <TextField

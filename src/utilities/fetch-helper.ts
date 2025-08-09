@@ -78,23 +78,23 @@ export async function GET<T>({
   count: number | undefined;
   data: T | undefined;
 }> {
-  const verifyResult = await verifyToken();
-  if (verifyResult.statusCode !== 200) {
-    return {
-      status: verifyResult.statusCode,
-      message: verifyResult.message,
-      page: undefined,
-      pageSize: undefined,
-      count: undefined,
-      data: undefined,
-    };
-  }
-  const token = (await cookies()).get("access_token")?.value;
-
   try {
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
+      const verifyResult = await verifyToken();
+      if (verifyResult.statusCode !== 200) {
+        return {
+          status: verifyResult.statusCode,
+          message: verifyResult.message,
+          page: undefined,
+          pageSize: undefined,
+          count: undefined,
+          data: undefined,
+        };
+      }
+      const token = (await cookies()).get("access_token")?.value;
+
       response = await fetch(fetchPath, {
         method: "GET",
         cache: cache ?? "default",
@@ -119,7 +119,7 @@ export async function GET<T>({
         page: result.page,
         pageSize: result.pageSize,
         count: result.count,
-        data: result.data,
+        data: result
       };
     } catch {
       return {
@@ -163,20 +163,20 @@ export async function POST<T>({
   message: string | undefined;
   data: T | undefined;
 }> {
-  const verifyResult = await verifyToken();
-  if (verifyResult.statusCode !== 200) {
-    return {
-      status: verifyResult.statusCode,
-      message: verifyResult.message,
-      data: undefined,
-    };
-  }
-  const token = (await cookies()).get("access_token")?.value;
-
   try {
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
+      const verifyResult = await verifyToken();
+      if (verifyResult.statusCode !== 200) {
+        return {
+          status: verifyResult.statusCode,
+          message: verifyResult.message,
+          data: undefined,
+        };
+      }
+      const token = (await cookies()).get("access_token")?.value;
+
       response = await fetch(fetchPath, {
         method: "POST",
         cache: cache ?? "default",
@@ -204,7 +204,7 @@ export async function POST<T>({
       return {
         status: response.status,
         message: response.statusText,
-        data: result.data,
+        data: result
       };
     } catch {
       return {
@@ -242,20 +242,20 @@ export async function PUT<T>({
   message: string | undefined;
   data: T | undefined;
 }> {
-  const verifyResult = await verifyToken();
-  if (verifyResult.statusCode !== 200) {
-    return {
-      status: verifyResult.statusCode,
-      message: verifyResult.message,
-      data: undefined,
-    };
-  }
-  const token = (await cookies()).get("access_token")?.value;
-
   try {
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
+      const verifyResult = await verifyToken();
+      if (verifyResult.statusCode !== 200) {
+        return {
+          status: verifyResult.statusCode,
+          message: verifyResult.message,
+          data: undefined,
+        };
+      }
+      const token = (await cookies()).get("access_token")?.value;
+
       response = await fetch(fetchPath, {
         method: "PUT",
         cache: cache ?? "default",
@@ -283,7 +283,7 @@ export async function PUT<T>({
       return {
         status: response.status,
         message: response.statusText,
-        data: result.data,
+        data: result
       };
     } catch {
       return {
@@ -321,20 +321,20 @@ export async function PATCH<T>({
   message: string | undefined;
   data: T | undefined;
 }> {
-  const verifyResult = await verifyToken();
-  if (verifyResult.statusCode !== 200) {
-    return {
-      status: verifyResult.statusCode,
-      message: verifyResult.message,
-      data: undefined,
-    };
-  }
-  const token = (await cookies()).get("access_token")?.value;
-
   try {
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
+      const verifyResult = await verifyToken();
+      if (verifyResult.statusCode !== 200) {
+        return {
+          status: verifyResult.statusCode,
+          message: verifyResult.message,
+          data: undefined,
+        };
+      }
+      const token = (await cookies()).get("access_token")?.value;
+
       response = await fetch(fetchPath, {
         method: "PATCH",
         cache: cache ?? "default",
@@ -362,7 +362,7 @@ export async function PATCH<T>({
       return {
         status: response.status,
         message: response.statusText,
-        data: result.data,
+        data: result
       };
     } catch {
       return {
@@ -396,20 +396,20 @@ export async function DELETE<T>({
   message: string | undefined;
   data: T | undefined;
 }> {
-  const verifyResult = await verifyToken();
-  if (verifyResult.statusCode !== 200) {
-    return {
-      status: verifyResult.statusCode,
-      message: verifyResult.message,
-      data: undefined,
-    };
-  }
-  const token = (await cookies()).get("access_token")?.value;
-
   try {
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
+      const verifyResult = await verifyToken();
+      if (verifyResult.statusCode !== 200) {
+        return {
+          status: verifyResult.statusCode,
+          message: verifyResult.message,
+          data: undefined,
+        };
+      }
+      const token = (await cookies()).get("access_token")?.value;
+
       response = await fetch(fetchPath, {
         method: "DELETE",
         cache: cache ?? "default",
@@ -431,7 +431,7 @@ export async function DELETE<T>({
       return {
         status: response.status,
         message: response.statusText,
-        data: result.data,
+        data: result
       };
     } catch {
       return {

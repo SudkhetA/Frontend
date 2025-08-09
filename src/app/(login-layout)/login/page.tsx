@@ -10,19 +10,20 @@ async function formSubmit(redirectPath: string, formData: FormData) {
   const username = formData.get("username");
   const password = formData.get("password");
 
-  const result = await POST<{ 
+  const result = await POST<{
     access_token: string;
     access_token_expires: Date;
     refresh_token: string;
     refresh_token_expires: Date;
   }>({
     isAuth: false,
-    path: "/api/System/Authentication/Login",
+    path: "/api/system/authentication/login",
     body: JSON.stringify({ username, password }),
     cache: "no-cache",
   });
 
   if (result.status === 200) {
+    console.log(result);
     const access_token = result.data!.access_token;
     const access_token_expires = result.data!.access_token_expires;
     const refresh_token = result.data!.refresh_token;
