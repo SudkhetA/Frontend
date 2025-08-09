@@ -23,7 +23,6 @@ async function formSubmit(redirectPath: string, formData: FormData) {
   });
 
   if (result.status === 200) {
-    console.log(result);
     const access_token = result.data!.access_token;
     const access_token_expires = result.data!.access_token_expires;
     const refresh_token = result.data!.refresh_token;
