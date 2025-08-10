@@ -1,14 +1,14 @@
-import type Member from "./member";
+import type { User } from "./user";
 import type Role from "./role";
 
-export default interface MemberRole {
-  memberId?: number;
+export default interface UserRole {
+  userId?: number;
   roleId?: number;
   createdBy?: number | undefined;
   createdDate?: Date | undefined;
   isActive?: boolean;
   
-  memberCreatedBy?: Member | null;
-  member?: Member;
+  memberCreatedBy?: User | null;
+  member?: User;
   role?: Role;
 }

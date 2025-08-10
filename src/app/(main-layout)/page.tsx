@@ -1,5 +1,3 @@
-import { Breadcrumbs, Card, CardContent, Typography } from "@mui/material";
-
 export const metadata = {
   title: "Home | Tepmplate",
   description: "Home page",
@@ -8,12 +6,14 @@ export const metadata = {
 export default function IndexPage() {
   return (
     <>
-      <Breadcrumbs>
-        <Typography>Home</Typography>
-      </Breadcrumbs>
-      <Card>
-        <CardContent>Main Content</CardContent>
-      </Card>
+      <div className="breadcrumbs">
+        <ul>
+          <li>Home</li>
+        </ul>
+      </div>
+      <div className="bg-base-100 p-4">
+        Main Content
+      </div>
     </>
   );
 }

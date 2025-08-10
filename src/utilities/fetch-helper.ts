@@ -100,7 +100,7 @@ export async function GET<T>({
         cache: cache ?? "default",
         headers: {
           authorization: `Bearer ${token}`,
-        },
+        }
       });
     } else {
       response = await fetch(fetchPath, {
@@ -109,28 +109,28 @@ export async function GET<T>({
       });
     }
 
-    const text = await response.text();
-    try {
-      const result = JSON.parse(text);
-
+    if (response.ok) {
+      const json = await response.json();
       return {
         status: response.status,
         message: response.statusText,
-        page: result.page,
-        pageSize: result.pageSize,
-        count: result.count,
-        data: result
+        page: json.page,
+        pageSize: json.pageSize,
+        count: json.count,
+        data: json.data
       };
-    } catch {
+    } else {
+      const text = await response.text();
       return {
         status: response.status,
-        message: response.statusText,
+        message: text,
         page: undefined,
         pageSize: undefined,
         count: undefined,
-        data: text as T,
+        data: undefined
       };
     }
+
   } catch (error) {
     console.error(error);
     return {

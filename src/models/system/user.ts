@@ -1,26 +1,25 @@
 import type IModel from "../i-model";
-import type MemberRole from "./member-role";
+import type UserRole from "./user-role";
 import type Menu from "./menu";
 import type Role from "./role";
 import type RoleMenu from "./role-menu";
 
-export default interface Member extends IModel {
+export interface User extends IModel {
   username?: string;
-  password?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
 
   roles?: Role[];
-  memberRoles?: MemberRole[];
+  userRoles?: UserRole[];
 
-  memberCreatedBy?: Member | null;
-  memberUpdatedBy?: Member | null;
-  memberDeletedBy?: Member | null;
+  userCreatedBy?: User | null;
+  userUpdatedBy?: User | null;
+  userDeletedBy?: User | null;
 
-  membersCreatedBy?: Member[] | null;
-  membersUpdatedBy?: Member[] | null;
-  membersDeletedBy?: Member[] | null;
+  usersCreatedBy?: User[] | null;
+  usersUpdatedBy?: User[] | null;
+  usersDeletedBy?: User[] | null;
 
   roleCreatedBy?: Role[] | null;
   roleUpdatedBy?: Role[] | null;
@@ -32,5 +31,13 @@ export default interface Member extends IModel {
 
   roleMenuCreatedBy?: RoleMenu[] | null;
 
-  memberRoleCreatedBy?: MemberRole[] | null;
+  userRoleCreatedBy?: UserRole[] | null;
+}
+
+export interface UserSearch {
+  id?: string[];
+  username?: string[];
+  firstName?: string[];
+  lastName?: string[];
+  email?: string[];
 }

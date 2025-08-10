@@ -1,4 +1,3 @@
-import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 
 export const metadata = {
@@ -8,9 +7,17 @@ export const metadata = {
 
 export default function UnauthorizePage() {
   return (
-    <Breadcrumbs>
-      <Link href="/" className="hover:underline">Home</Link>
-      <Typography>Unauthorize</Typography>
-    </Breadcrumbs>
+    <div className="bg-base-100 p-4">
+      <div className="breadcrumbs">
+        <ul>
+          <li>
+            <Link href="/" className="hover:underline">Home</Link>
+          </li>
+          <li>
+            <span>Unauthorize</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }

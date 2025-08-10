@@ -1,6 +1,5 @@
 "use client";
 
-import { Box, Button, Card, CardActions, CardContent, CircularProgress, TextField, Typography } from "@mui/material";
 import { useFormStatus } from "react-dom";
 import { useSearchParams } from "next/navigation";
 
@@ -9,15 +8,15 @@ function SubmitButton() {
 
   if (status.pending) {
     return (
-      <Button variant="contained" fullWidth={true} disabled={true}>
-        <CircularProgress size={20} />&nbsp;
-      </Button>
+      <button type="submit" className="btn btn-primary btn-block" disabled>
+        <span className="loading loading-spinner loading-md"></span>
+      </button>
     );
   } else {
     return (
-      <Button variant="contained" type="submit" fullWidth={true} disabled={status.pending}>
+      <button type="submit" className="btn btn-primary btn-block">
         Login
-      </Button>
+      </button>
     );
   }
 }
@@ -45,40 +44,15 @@ export default function FormComponent({
 
   return (
     <>
-      <form action={actionWithRedirect}>
-        <Card>
-          <CardContent>
-            <Box className="mb-3">
-              <Typography variant="h4" className="text-center" >Sign In</Typography>
-            </Box>
-            <Box className="mb-3">
-              <TextField
-                required={true}
-                fullWidth={true}
-                name="username"
-                label="Username"
-                type="text"
-                variant="outlined"
-                size="small"
-              />
-            </Box>
-            <Box className="">
-              <TextField
-                required={true}
-                fullWidth={true}
-                name="password"
-                label="Password"
-                type="password"
-                variant="outlined"
-                size="small"
-              />
-            </Box>
-            <span className="text-red-600">{resultMessage(searchParams.get("result"))}</span>
-          </CardContent>
-          <CardActions className="justify-end">
-            <SubmitButton />
-          </CardActions>
-        </Card>
+      <form action={actionWithRedirect} className="bg-base-100 p-4 rounded-lg shadow-md">
+        <h4 className="text-center mb-4">Sign In</h4>
+        <input type="text" placeholder="Username" className="input mb-3" />
+        <input type="password" placeholder="Password" className="input mb-3" />
+        <span className="text-red-600">{resultMessage(searchParams.get("result"))}</span>
+
+        <div className="flex justify-end mt-4">
+          <SubmitButton />
+        </div>
       </form>
     </>
   );

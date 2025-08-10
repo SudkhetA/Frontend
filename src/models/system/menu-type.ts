@@ -1,13 +1,12 @@
 import IModel from "../i-model";
-import Member from "./member";
+import { User } from "./user";
 import Menu from "./menu";
 
 export default interface MenuType extends IModel {
   name?: string;
 
-  memberCreatedBy?: Member | null;
-  memberUpdatedBy?: Member | null;
-  memberDeletedBy?: Member | null;
+  userCreatedBy?: User | null;
+  userUpdatedBy?: User | null;
 
   menus?: Menu[];
 }

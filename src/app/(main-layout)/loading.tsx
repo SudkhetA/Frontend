@@ -1,5 +1,5 @@
 export default function Loading() {
   return (
-    <p>Loading...</p>
+    <span className="loading loading-spinner loading-md"></span>
   );
 }

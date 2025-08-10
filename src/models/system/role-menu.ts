@@ -1,4 +1,4 @@
-import type Member from "./member";
+import type { User } from "./user";
 import type Menu from "./menu";
 import type Role from "./role";
 
@@ -13,7 +13,7 @@ export default interface RoleMenu {
   isUpdate?: boolean;
   isDelete?: boolean;
 
-  memberCreatedBy?: Member | null;
+  memberCreatedBy?: User | null;
   role?: Role;
   menu?: Menu;
 }
