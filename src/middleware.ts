@@ -92,7 +92,12 @@ export async function middleware(request: NextRequest) {
             return NextResponse.redirect(unauthorizeUrl);
           }
         } else {
-          return NextResponse.redirect(unauthorizeUrl);
+          const url = request.nextUrl.clone();
+          url.pathname = `/login`;
+          if (request.nextUrl.pathname !== "/") {
+            url.search = `path=${encodeURIComponent(request.nextUrl.pathname)}`;
+          }
+          return NextResponse.redirect(url);
         }
       } catch (error) {
         console.error(error);

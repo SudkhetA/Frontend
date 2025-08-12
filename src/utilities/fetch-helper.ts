@@ -1,6 +1,6 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getErrorMessage } from "./helper";
 
 const host = process.env.BACKEND_HOST;
@@ -79,6 +79,8 @@ export async function GET<T>({
   data: T | undefined;
 }> {
   try {
+    const headersList = await headers()
+
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
@@ -100,12 +102,16 @@ export async function GET<T>({
         cache: cache ?? "default",
         headers: {
           authorization: `Bearer ${token}`,
+          "user-agent": headersList.get('user-agent')!
         }
       });
     } else {
       response = await fetch(fetchPath, {
         method: "GET",
         cache: cache ?? "default",
+        headers: {
+          "user-agent": headersList.get('user-agent')!
+        }
       });
     }
 
@@ -164,6 +170,8 @@ export async function POST<T>({
   data: T | undefined;
 }> {
   try {
+    const headersList = await headers();
+
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
@@ -183,6 +191,7 @@ export async function POST<T>({
         headers: {
           "content-type": contentType ?? "application/json",
           authorization: `Bearer ${token}`,
+          "user-agent": headersList.get('user-agent')!
         },
         body: body,
       });
@@ -192,6 +201,7 @@ export async function POST<T>({
         cache: cache ?? "default",
         headers: {
           "content-type": contentType ?? "application/json",
+          "user-agent": headersList.get('user-agent')!
         },
         body: body,
       });
@@ -243,6 +253,8 @@ export async function PUT<T>({
   data: T | undefined;
 }> {
   try {
+    const headersList = await headers();
+
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
@@ -262,6 +274,7 @@ export async function PUT<T>({
         headers: {
           "content-type": contentType ?? "application/json",
           authorization: `Bearer ${token}`,
+          "user-agent": headersList.get('user-agent')!
         },
         body: body,
       });
@@ -271,6 +284,7 @@ export async function PUT<T>({
         cache: cache ?? "default",
         headers: {
           "content-type": contentType ?? "application/json",
+          "user-agent": headersList.get('user-agent')!
         },
         body: body,
       });
@@ -322,6 +336,8 @@ export async function PATCH<T>({
   data: T | undefined;
 }> {
   try {
+    const headersList = await headers();
+
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
@@ -341,6 +357,7 @@ export async function PATCH<T>({
         headers: {
           "content-type": contentType ?? "application/json",
           authorization: `Bearer ${token}`,
+          "user-agent": headersList.get('user-agent')!
         },
         body: body,
       });
@@ -350,11 +367,12 @@ export async function PATCH<T>({
         cache: cache ?? "default",
         headers: {
           "content-type": contentType ?? "application/json",
+          "user-agent": headersList.get('user-agent')!
         },
         body: body,
       });
     }
-
+    
     const text = await response.text();
     try {
       const result = JSON.parse(text);
@@ -397,6 +415,8 @@ export async function DELETE<T>({
   data: T | undefined;
 }> {
   try {
+    const headersList = await headers();
+
     let response: Response;
     const fetchPath = `${host}${path}${query ? `?${query}` : ""}`;
     if (isAuth) {
@@ -415,12 +435,16 @@ export async function DELETE<T>({
         cache: cache ?? "default",
         headers: {
           authorization: `Bearer ${token}`,
+          "user-agent": headersList.get('user-agent')!
         },
       });
     } else {
       response = await fetch(fetchPath, {
         method: "DELETE",
         cache: cache ?? "default",
+        headers: {
+          "user-agent": headersList.get('user-agent')!
+        },
       });
     }
 

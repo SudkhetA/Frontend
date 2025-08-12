@@ -2,6 +2,7 @@
 
 import { useFormStatus } from "react-dom";
 import { useSearchParams } from "next/navigation";
+import { KeyRound, User } from "lucide-react";
 
 function SubmitButton() {
   const status = useFormStatus();
@@ -46,8 +47,14 @@ export default function FormComponent({
     <>
       <form action={actionWithRedirect} className="bg-base-100 p-4 rounded-lg shadow-md">
         <h4 className="text-center mb-4">Sign In</h4>
-        <input type="text" placeholder="Username" className="input mb-3" />
-        <input type="password" placeholder="Password" className="input mb-3" />
+        <label className="input mb-3">
+          <User />
+          <input type="text" name="username" placeholder="Username" className="grow" />
+        </label>
+        <label className="input mb-3">
+          <KeyRound />
+          <input type="password" name="password" placeholder="Password" className="grow" />
+        </label>
         <span className="text-red-600">{resultMessage(searchParams.get("result"))}</span>
 
         <div className="flex justify-end mt-4">

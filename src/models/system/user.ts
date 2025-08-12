@@ -35,9 +35,9 @@ export interface User extends IModel {
 }
 
 export interface UserSearch {
-  id?: string[];
-  username?: string[];
-  firstName?: string[];
-  lastName?: string[];
-  email?: string[];
+  id?: string | string[];
+  username?: string | string[];
+  firstName?: string | string[];
+  lastName?: string | string[];
+  email?: string | string[];
 }
